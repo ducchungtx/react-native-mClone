@@ -35,7 +35,7 @@ export default class App extends Component {
                 <View style={[{ flex: 1 }, styles.container]}>
                     <Header navigator={this.props.navigator} toggle={this.toggle.bind(this)} />
                     <Slide/>
-                    <List />
+                    <List navigator={this.props.navigator} />
                 </View>                    
                 </SideMenu>                
             </View>           

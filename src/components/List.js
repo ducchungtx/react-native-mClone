@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, TouchableWithoutFeedback } from 'react-native';
 
 export default class List extends Component {
-
+    newPushContent(item) {
+        this.props.navigator.push({
+            ident: 'Details',
+            passProps: {
+                item
+            }
+        })
+    }
     _renderItem(item) {
         return (
-            <Image style={{ width: 120, height: 180 }} source={{ uri: item.image }} />
-
+            <TouchableWithoutFeedback onPress={() => this.newPushContent(item)}>
+                <Image style={{ width: 120, height: 180 }} source={{ uri: item.image }} />
+            </TouchableWithoutFeedback>
         );
     }
 
