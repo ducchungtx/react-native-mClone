@@ -4,6 +4,7 @@ import CustomComponents from 'react-native-deprecated-custom-components';
 import App from './app';
 import Search from './components/Search';
 import Details from './components/Details';
+import Video from './components/VideoPlayerView';
 
 import buildStyleInterpolator from 'buildStyleInterpolator';
 
@@ -37,6 +38,10 @@ export default class IndexApp extends Component {
                 return (
                     <Details {...navigator} {...route.passProps} />
                 )
+            case 'Video':
+                return (
+                    <Video {...navigator} {...route.passProps} />
+                )
         }
     }
     _configureScene(route, routeStack) {
@@ -61,12 +66,22 @@ export default class IndexApp extends Component {
                         out: buildStyleInterpolator(NoTransition),
                     }
                 }
+            case 'Video':
+                return {
+                    ...CustomComponents.Navigator.SceneConfigs.FloatFromLeft,
+                    gestures: null,
+                    defaultTransitionVelocity: 100,
+                    animationInterpolators: {
+                        into: buildStyleInterpolator(NoTransition),
+                        out: buildStyleInterpolator(NoTransition),
+                    }
+                }
         }
     }
     render() {
         return (
             <CustomComponents.Navigator
-                initialRoute={{ident: 'App'}}
+                initialRoute={{ident: 'Video'}}
                 renderScene={this._renderScene}
                 configureScene={this._configureScene}
             />
